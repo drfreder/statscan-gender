@@ -159,8 +159,8 @@ p3 <- ggplot(data=U15red, aes(x=reorder(University, dif), y=as.numeric(dif)))+
                    xend=reorder(University, dif), 
                    y=0, 
                    yend=as.numeric(dif)))+
-      theme(text = element_text(size=8),
-            axis.text = element_text(size=8),
+      theme(text = element_text(size=10),
+            axis.text = element_text(size=10),
             axis.text.x = element_text(angle=90))
 p3
 ```
