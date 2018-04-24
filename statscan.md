@@ -124,8 +124,8 @@ p2
 
 ![](statscan_files/figure-markdown_github/Visualize%20data-2.png)
 
-Determine whether U15 is worse than other universities
-------------------------------------------------------
+U15
+---
 
 ``` r
 #Trim whitespace from university names
@@ -137,26 +137,6 @@ U15 <- c("University of Alberta", "University of British Columbia", "University 
 #Create a column indicating whether the university is in the U15
 median_sum$U15 <- as.character(median_sum$University %in% U15)
 
-#Visualize data
-p7 <- ggplot(data=median_sum, aes(x=U15, y=as.numeric(dif)))+geom_boxplot(fill="grey")+
-      xlab("U15?")+
-      ylab("Gender pay gap ($)")
-p7
-```
-
-![](statscan_files/figure-markdown_github/U15-1.png)
-
-``` r
-#Visualize data
-p8 <- ggplot(data=median_sum, aes(x=U15, y=as.numeric(percent)))+geom_boxplot(fill="grey")+
-      xlab("U15?")+
-      ylab("Gender pay gap (%)")
-p8
-```
-
-![](statscan_files/figure-markdown_github/U15-2.png)
-
-``` r
 #Visualize data
 U15 <- subset(median_sum, U15==TRUE)
 nU15 <- subset(median_sum, U15==FALSE)
@@ -170,7 +150,7 @@ U15red <- rbind(U15red, newRow)
 U15red$University <- gsub("Universite Laval", "Universit\uE9 Laval", U15red$University)
 U15red$University <- gsub("Universite de Montreal", "Universit\uE9 de Montr\u{E9}al", U15red$University)
 
-p1 <- ggplot(data=U15red, aes(x=reorder(University, dif), y=as.numeric(dif)))+
+p3 <- ggplot(data=U15red, aes(x=reorder(University, dif), y=as.numeric(dif)))+
       geom_point()+
       coord_flip()+
       xlab("Institution")+
@@ -182,7 +162,7 @@ p1 <- ggplot(data=U15red, aes(x=reorder(University, dif), y=as.numeric(dif)))+
       theme(text = element_text(size=8),
             axis.text = element_text(size=8),
             axis.text.x = element_text(angle=90))
-p1
+p3
 ```
 
-![](statscan_files/figure-markdown_github/U15-3.png)
+![](statscan_files/figure-markdown_github/U15-1.png)
