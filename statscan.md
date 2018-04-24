@@ -100,7 +100,7 @@ p1 <- ggplot(data=median_sum, aes(x=reorder(University, dif), y=as.numeric(dif))
                    xend=reorder(University, dif), 
                    y=0, 
                    yend=as.numeric(dif)))+
-      theme(axis.text.y = element_text(size=5))
+      theme(axis.text.y = element_text(size=6))
 p1
 ```
 
@@ -118,7 +118,7 @@ p2 <- ggplot() +
                    xend=reorder(University, dif), 
                    y=1.0, 
                    yend=as.numeric(percent)))+
-      theme(axis.text.y = element_text(size=5))
+      theme(axis.text.y = element_text(size=6))
 p2
 ```
 

@@ -106,7 +106,7 @@ p1 <- ggplot(data=median_sum, aes(x=reorder(University, dif), y=as.numeric(dif))
                    xend=reorder(University, dif), 
                    y=0, 
                    yend=as.numeric(dif)))+
-      theme(axis.text.y = element_text(size=5))
+      theme(axis.text.y = element_text(size=6))
 p1
 
 #Gender wage gap, as percent 
@@ -120,7 +120,7 @@ p2 <- ggplot() +
                    xend=reorder(University, dif), 
                    y=1.0, 
                    yend=as.numeric(percent)))+
-      theme(axis.text.y = element_text(size=5))
+      theme(axis.text.y = element_text(size=6))
 p2
 
 ```
@@ -164,6 +164,7 @@ p3 <- ggplot(data=U15red, aes(x=reorder(University, dif), y=as.numeric(dif)))+
             axis.text = element_text(size=10),
             axis.text.x = element_text(angle=90))
 p3
+
 
 ```
 
