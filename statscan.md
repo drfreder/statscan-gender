@@ -1,24 +1,19 @@
----
-title: "The gender pay gap at Canadian universities"
-author: "Megan Frederickson"
-date: "`r format(Sys.Date())`"
-output: github_document
----
+The gender pay gap at Canadian universities
+================
+Megan Frederickson
+2018-05-24
 
 This repository is part of an ongoing effort to gather, analyze, and share data on gender equity among Canadian academics. I provide all data and code so that anyone, anywhere can replicate or expand on my analyses.
 
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
-```
+Statistics Canada
+-----------------
 
-## Statistics Canada
+Statistics Canada collected data on the number and salaries of full-time academic staff at Canadian universities in 2016-2017. The data come from the Full-time-University and College Academic Staff System (FT-UCASS). I downloaded the data on February 11, 2018. Note that data are available only for the 66 institutions that had at least 100 full-time teach staff.
 
-Statistics Canada collected data on the number and salaries of full-time academic staff at Canadian universities in 2016-2017. The data come from the Full-time-University and College Academic Staff System (FT-UCASS). I downloaded the data on February 11, 2018. Note that data are available only for the 66 institutions that had at least 100 full-time teach staff. 
+Load packages and data
+----------------------
 
-## Load packages and data
-
-```{r Load packages and data, message=FALSE}
-
+``` r
 #Load useful packages
 library(tidyverse) #includes ggplot2, dplyr, readr, stringr
 library(cowplot)
@@ -89,13 +84,12 @@ median_sum$percent_female <- median_n$percent_female
 
 #Shorten one university name
 median_sum[median_sum$University=="Universite du Quebec, Institut national de la recherche scientifique", "University"] <- "Universite du Quebec, INRS"
-
 ```
 
-##Visualize data
+Visualize data
+--------------
 
-```{r Visualize data}
-
+``` r
 #Visualize gender pay gap two different ways
 
 #Gender wage gap in dollars
@@ -110,7 +104,11 @@ p1 <- ggplot(data=median_sum, aes(x=reorder(University, dif), y=as.numeric(dif))
                    yend=as.numeric(dif)))+
       theme(axis.text.y = element_text(size=6))
 p1
+```
 
+![](statscan_files/figure-markdown_github/Visualize%20data-1.png)
+
+``` r
 #Gender wage gap, as percent 
 p2 <- ggplot() +
       geom_point(data=median_sum, aes(x=reorder(University, -percent), y=as.numeric(percent)))+
@@ -124,13 +122,14 @@ p2 <- ggplot() +
                    yend=as.numeric(percent)))+
       theme(axis.text.y = element_text(size=6))
 p2
-
 ```
 
-## U15
+![](statscan_files/figure-markdown_github/Visualize%20data-2.png)
 
-```{r U15}
+U15
+---
 
+``` r
 #Trim whitespace from university names
 median_sum$University <- trimws(median_sum$University, which="both")
 
@@ -166,7 +165,6 @@ p3 <- ggplot(data=U15red, aes(x=reorder(University, dif), y=as.numeric(dif)))+
             axis.text = element_text(size=10),
             axis.text.x = element_text(angle=90))
 p3
-
-
 ```
 
+![](statscan_files/figure-markdown_github/U15-1.png)
