@@ -3,7 +3,7 @@ The gender pay gap at Canadian universities
 Megan Frederickson
 2018-05-24
 
-This repository is part of an ongoing effort to gather, analyze, and share data on gender equity among Canadian academics. This effort is intended to be fully transparent and open source, with all data and code provided so that anyone, anywhere can verify and replicate my analyses.
+This repository is part of an ongoing effort to gather, analyze, and share data on gender equity among Canadian academics. All the data and code are provided so that anyone, anywhere can verify and replicate my analyses.
 
 Statistics Canada
 -----------------
