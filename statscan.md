@@ -1,12 +1,14 @@
 The gender pay gap at Canadian universities
 ================
 Megan Frederickson
-2018-04-23
+2018-05-24
+
+This repository is part of an ongoing effort to gather, analyze, and share data on gender equity among Canadian academics. This effort is intended to be fully transparent and open source, with all data and code provided so that anyone, anywhere can verify and replicate my analyses.
 
 Statistics Canada
 -----------------
 
-Statistics Canada collected data on the number and salaries of full-time teaching staff at Canadian universities in 2016-2017. The data come from the Full-time-University and College Academic Staff System (FT-UCASS). I downloaded the data on February 11, 2018. Note that data are available only for the 66 institutions that had at least 100 full-time teach staff.
+Statistics Canada collected data on the number and salaries of full-time academic staff at Canadian universities in 2016-2017. The data come from the Full-time-University and College Academic Staff System (FT-UCASS). I downloaded the data on February 11, 2018. Note that data are available only for the 66 institutions that had at least 100 full-time teach staff.
 
 Load packages and data
 ----------------------
