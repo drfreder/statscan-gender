@@ -99,7 +99,7 @@ median_sum[median_sum$University=="Universite du Quebec, Institut national de la
 
 ##Visualize data
 
-```{r Visualize data}
+```{r Visualize data, dpi=600}
 
 #Visualize gender pay gap two different ways
 
