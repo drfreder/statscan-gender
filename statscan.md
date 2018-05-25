@@ -3,46 +3,44 @@ The gender pay gap at Canadian universities
 Megan Frederickson
 2018-05-24
 
-This repository is part of an ongoing effort to gather, analyze, and share data on gender equity among Canadian academics. I provide all data and code so that anyone, anywhere can replicate or expand on my analyses.
+This repository is part of an ongoing effort to gather, analyze, and share data on gender equity among Canadian academics. I provide all data and code so that anyone, anywhere can replicate or expand on my analyses. These analyses also accompany a story I wrote for <i>The Conversation</i>: <https://theconversation.com/canadian-professors-still-face-a-gender-pay-gap-93609>
 
 Statistics Canada
 -----------------
 
-Statistics Canada collected data on the number and salaries of full-time academic staff at Canadian universities in 2016-2017. The data come from the Full-time-University and College Academic Staff System (FT-UCASS). I downloaded the data on February 11, 2018. Note that data are available only for the 66 institutions that had at least 100 full-time teach staff.
+Statistics Canada collected data on the number and salaries of full-time academic staff at Canadian universities in 2016-2017. The data come from the Full-time-University and College Academic Staff System (FT-UCASS). I downloaded the data on February 11, 2018. Note that data are available only for the 66 institutions that had at least 100 full-time teaching staff in 2016-2017.
 
-Load packages and data
-----------------------
+### Getting started
+
+First we need to load some useful R packages.
 
 ``` r
 #Load useful packages
 library(tidyverse) #includes ggplot2, dplyr, readr, stringr
 library(cowplot)
-library(car)
-library(glmm)
-library(nlme)
-library(lme4)
-library(predictmeans)
 library(foreign)
 library(gender)
 library(knitr)
-library(kableExtra)
 library(data.table)
 library(reshape2)
+```
 
+Next, we need to load and clean the data.
+
+``` r
 #Read in data
 data <- read.csv("https://raw.githubusercontent.com/drfreder/statscan-gender/master/statscan_11feb2018.csv")
 
-#The data is not formatted as we will need it
 #Subset to include only number, median, and average salaries of male and female faculty
 data <- subset(data, RAN=="Male"|RAN=="Female")
 
-#Subset to include just number of faculty
+#Subset just number of faculty
 data_num <- subset(data, STA=="Total teaching staff")
 
-#Subset to include just median salary
+#Subset just median salary
 data_median <- subset(data, STA=="Median (dollars)")
 
-#Subset to include just average salary
+#Subset just average salary
 data_average <- subset(data, STA=="Average (dollars)")
 
 #Combine subsets
@@ -52,7 +50,11 @@ mdata <- cbind(data_num[,3:6],data_median[,3:6],data_average [,3:6])
 mdata$Match <- mdata[ ,1] == mdata[ ,5]
 mdata$Match2 <- mdata[ ,1] == mdata[ ,9]
 tmp <- ifelse((all(mdata$Match) && all(mdata$Match2)), mdata <- mdata[,c(-5,-6, -9,-10, -13,-14)], FALSE)
+
+#Rename columns
 colnames(mdata) <- c("University", "Gender", "STA", "Total_staff", "STA.1", "Median", "STA.2", "Average")
+
+#Remove unnecessary columns
 mdata <- mdata[,c(-3,-5,-7)]
 
 #Fix data types
@@ -68,7 +70,7 @@ mdata$University <- gsub(enc2utf8("<8e>"),"e", mdata$University)
 mdata$University <- gsub(enc2utf8("<88>"),"a", mdata$University)
 mdata$University <- gsub(enc2utf8("<8f>"),"e", mdata$University)
 
-#Exclude rows that exclude medical and dental teaching staff
+#Omit rows that exclude medical and dental teaching staff
 mdata <- mdata[!grepl(".*Excluding.*", mdata$University), ]
 mdata$University <- gsub("- Including medical dental", "", mdata$University)
 
